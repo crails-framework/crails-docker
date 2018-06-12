@@ -1,6 +1,7 @@
 #!/bin/bash -ex
 
-source ./metadata
+current_dir=`dirname $0`
+source $current_dir/metadata
 machine_name="$project_name"_dock
 docker_build_options="-q"
 docker_options="-it"

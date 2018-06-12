@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM heroku/heroku:16
 
 ENV LD_LIBRARY_PATH /usr/local/lib
 

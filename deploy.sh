@@ -1,4 +1,4 @@
-#!/bin/bash -ex
+#!/bin/bash -x
 
 docker/shell -v -c package.sh
 
@@ -11,12 +11,18 @@ fi
 cd runtime
 
 if [[ -f .git ]] ; then
+  echo "git repository ready"
 else
   git init .
   heroku git:remote $*
   git pull heroku master
 fi
 
+commit_options=""
+if [[ -f .git/logs/HEAD ]] ; then
+  commit_options="--amend"
+fi
+
 git add .
-git commit --amend -m "crails-docker/heroku deployment"
+git commit $commit_options -m "crails-docker/heroku deployment"
 git push -f heroku master

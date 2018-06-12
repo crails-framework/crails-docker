@@ -1,2 +1,1 @@
-web:    ./launch-crailsapp.sh
-worker: ./launch-sidekic.sh
+web: ./launch.sh

@@ -72,7 +72,7 @@ done
 cp -R "$public_source_dir" "$output_dir"
 
 # Export scripts
-for script in Procfile launch-crailsapp.sh launch-sidekic.sh; do
+for script in Procfile launch.sh launch-crailsapp.sh launch-sidekic.sh; do
   cp "$docker_dir/scripts/$script" "$output_dir/"
 done
 

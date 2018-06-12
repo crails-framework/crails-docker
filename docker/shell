@@ -1,0 +1,28 @@
+#!/bin/bash -ex
+
+source ./metadata
+machine_name="$project_name"_dock
+docker_build_options="-q"
+docker_options="-it"
+command=""
+
+while getopts "vac:" option
+do
+  case $option in
+    v)
+      docker_build_options=""
+      ;;
+    a)
+      docker_options="-t"
+      ;;
+    c)
+      command="$OPTARG"
+      ;;
+  esac
+done
+
+docker build $docker_build_options -t "$machine_name" docker
+
+docker run --net=host $docker_options --rm \
+  -v "`pwd`:/opt/webapp" \
+  "$machine_name" bash $command

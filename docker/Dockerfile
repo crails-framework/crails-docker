@@ -12,6 +12,7 @@ RUN apt-get -y install wget \
   git \
   ruby \
   ruby-dev \
+  nodejs \
   python \
   libpq-dev
 

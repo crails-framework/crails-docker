@@ -34,7 +34,7 @@ cmake "$backend_dir" $cmake_options
 # Configure crails-guard
 export CRAILS_BUILD_PATH="$build_dir"
 export CRAILS_PUBLIC_PATH="$public_dir"
-export CRAILS_RUBY_BUNLDE_PATH="$CRAILS_BUILD_PATH"
+export CRAILS_RUBY_BUNDLE_PATH="$CRAILS_BUILD_PATH"
 
 # Build server
 cd "$backend_dir"

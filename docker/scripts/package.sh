@@ -62,6 +62,7 @@ done
 # Export server and task binaries
 cp "$build_dir/libcrails-app.so" "$lib_dir"
 cp "$build_dir/server" "$bin_dir"
+mkdir -p "$build_dir/tasks"
 for task in `ls $build_dir/tasks` ; do
   mkdir -p "$bin_dir/tasks/$task"
   cp "$build_dir/tasks/$task/task" "$bin_dir/tasks/$task/"

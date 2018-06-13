@@ -19,3 +19,10 @@ You may also run an interactive shell simply by running:
 ```
 docker/shell
 ```
+
+### Deployment
+You can deploy your crails application by executing the following command line:
+```
+./deploy.sh -a heroku-app-name
+```
+You must have the `heroku-cli` tool installed for the deployment to work. Note that the deploy script will also run `docker/shell -c package.sh` to update your application build.

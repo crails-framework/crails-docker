@@ -1,4 +1,4 @@
-#!/bin/bash -ex
+#!/bin/bash -e
 
 current_dir=`dirname $0`
 source $current_dir/metadata
@@ -7,7 +7,7 @@ docker_build_options="-q"
 docker_options="-it"
 command=""
 
-while getopts "vac:" option
+while getopts "vac:zh" option
 do
   case $option in
     v)
@@ -19,8 +19,25 @@ do
     c)
       command="$OPTARG"
       ;;
+    z)
+      CRAILS_DOCKER_DISABLE_AUTOMATIC_UPDATE="yes"
+      ;;
+    h)
+      echo "Usage: $0 [OPTIONS]"
+      echo "  -v    	Verbose docker build (quiet by default)"
+      echo "  -a    	Disable interactive mode. This option must be set when the command isn't launched from an interactive shell"
+      echo "  -c [CMD] 	Will run 'CMD' instead of opening a shell"
+      echo "  -z    	Disable automatic update of crails"
+      exit 0
+      ;;
   esac
 done
+
+if [[ -z $CRAILS_DOCKER_DISABLE_AUTOMATIC_UPDATE ]] ; then
+  $current_dir/dependencies/set-crails-version.sh
+fi
+
+set -x
 
 docker build $docker_build_options -t "$machine_name" docker
 
